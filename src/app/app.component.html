@@ -1,19 +1,13 @@
 <section>
-  <!-- Structure Directives -->
-  <h1 *ngIf="isLoggedIn">Welcome {{ username }}</h1>
-  <p *ngIf="!isLoggedIn">Please login to view the content</p>
+  {{ title | uppercase }}
 
-  <h1 *ngIf="isLoggedIn; else loggedOut">Welcome back, {{ username }}</h1>
+  <p>Today is {{ today | date }}</p>
+  <p>Today is {{ today | date : "fullDate" }}</p>
+  <p>
+    {{ currency | currency }}
+  </p>
 
-  <ng-template #loggedOut>Please login</ng-template>
-
-  <ul>
-    <li *ngFor="let name of names; let i = index">{{ i }} {{ name }}</li>
-  </ul>
-
-  <div [ngSwitch]="grade">
-    <p *ngSwitchCase="'A'">Excellent</p>
-    <p *ngSwitchCase="'B'">Good</p>
-    <p *ngSwitchDefault>Unknown</p>
-  </div>
+  <h2>
+    {{ title | append : "\tCustum" }}
+  </h2>
 </section>
