@@ -1,27 +1,19 @@
 <section>
-  <!-- interpolation -->
-  <h1>hello {{ title }}</h1>
-  <!-- Attribute Binding -->
-  <img [src]="imgSrc" alt="angular-image" width="700" height="400" />
-  <!-- Style Binding -->
-  <div [style.backgroundColor]="bgColor">
-    <h2 [style.color]="titleColor">Title</h2>
-    <p [style]="description">Description</p>
-  </div>
+  <!-- Structure Directives -->
+  <h1 *ngIf="isLoggedIn">Welcome {{ username }}</h1>
+  <p *ngIf="!isLoggedIn">Please login to view the content</p>
 
-  <h3 [class.textColor]="redText">Title</h3>
-  <!-- Event Binding -->
-  <button (click)="incrementCounter()">Click me</button>
-  <p>Counter: {{ count }}</p>
-  <!-- Two way data binding -->
-  <div>
-    <input type="text" [(ngModel)]="inputText" />
-    <p>You entered: {{ inputText }}</p>
-  </div>
+  <h1 *ngIf="isLoggedIn; else loggedOut">Welcome back, {{ username }}</h1>
 
-  <div [ngClass]="classes">
-    {{ message }}
-  </div>
+  <ng-template #loggedOut>Please login</ng-template>
 
-  <div class="color-box" [ngStyle]="{ backgroundColor: selectedColor }"></div>
+  <ul>
+    <li *ngFor="let name of names; let i = index">{{ i }} {{ name }}</li>
+  </ul>
+
+  <div [ngSwitch]="grade">
+    <p *ngSwitchCase="'A'">Excellent</p>
+    <p *ngSwitchCase="'B'">Good</p>
+    <p *ngSwitchDefault>Unknown</p>
+  </div>
 </section>

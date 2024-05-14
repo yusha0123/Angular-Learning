@@ -6,29 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title: string = 'World';
-  count: number = 0;
+  title = 'Structure Directives';
+  isLoggedIn: boolean = true;
+  username: string = 'Yusha';
+  names: string[] = [
+    'Yusha',
+    'Babu Rao',
+    'Chota babu',
+    'Jahil Babu',
+    'Gawar Babu',
+  ];
 
-  // attribute binding
-  imgSrc: string = '../assets/angular-image.png';
-  //style binding
-  bgColor: string = 'blue';
-  titleColor: string = 'white';
-  description: string = 'font-size: 30px; color:lightBlue;';
-
-  incrementCounter() {
-    this.count++;
-  }
-
-  //class binding
-  redText: boolean = true;
-
-  inputText: string = 'Initial Value';
-
-  //ngClass
-  message: string = 'This is a dangerous message';
-  classes: string = 'danger text-size';
-
-  //ngStyle
-  selectedColor: string = 'red';
+  grade: string = 'B';
 }
