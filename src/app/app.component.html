@@ -1,0 +1,27 @@
+<section>
+  <!-- interpolation -->
+  <h1>hello {{ title }}</h1>
+  <!-- Attribute Binding -->
+  <img [src]="imgSrc" alt="angular-image" width="700" height="400" />
+  <!-- Style Binding -->
+  <div [style.backgroundColor]="bgColor">
+    <h2 [style.color]="titleColor">Title</h2>
+    <p [style]="description">Description</p>
+  </div>
+
+  <h3 [class.textColor]="redText">Title</h3>
+  <!-- Event Binding -->
+  <button (click)="incrementCounter()">Click me</button>
+  <p>Counter: {{ count }}</p>
+  <!-- Two way data binding -->
+  <div>
+    <input type="text" [(ngModel)]="inputText" />
+    <p>You entered: {{ inputText }}</p>
+  </div>
+
+  <div [ngClass]="classes">
+    {{ message }}
+  </div>
+
+  <div class="color-box" [ngStyle]="{ backgroundColor: selectedColor }"></div>
+</section>
