@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { PostsService } from './services/posts.service';
-import { Post } from './types';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [PostsService],
 })
-export class AppComponent implements OnInit {
-  title: string = 'API integration with http client module';
-  posts: Post[] = [];
+export class AppComponent {
+  title: string = 'Template driven forms';
+  user: {
+    name: string;
+    email: string;
+  } = {
+    name: '',
+    email: '',
+  };
 
-  constructor(private postsService: PostsService) {}
+  submitForm = (form: NgForm) => {
+    if (form.valid) {
+      console.log(form.value);
+    }
+  };
 
-  ngOnInit() {
-    this.postsService.getPosts().subscribe({
-      next: (posts: Post[]) => {
-        this.posts = posts;
-      },
-      error: (error) => {
-        console.error('Error fetching posts:', error);
-      },
-    });
-  }
+  validateEmail: () => boolean = () => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(this.user.email);
+  };
 }
