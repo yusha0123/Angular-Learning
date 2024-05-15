@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,23 +7,55 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title: string = 'Template driven forms';
-  user: {
-    name: string;
-    email: string;
-  } = {
-    name: '',
-    email: '',
-  };
+  title: string = 'Reactive forms';
 
-  submitForm = (form: NgForm) => {
-    if (form.valid) {
-      console.log(form.value);
+  userForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
+        ],
+      ],
+      address: this.formBuilder.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+      }),
+      phoneNumbers: this.formBuilder.array([
+        this.formBuilder.control('', [
+          Validators.required,
+          Validators.pattern(/^\d{10}$/),
+        ]),
+      ]),
+    });
+  }
+
+  get phoneNumbers() {
+    return this.userForm.get('phoneNumbers') as FormArray;
+  }
+
+  submitForm = () => {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value);
     }
   };
 
-  validateEmail: () => boolean = () => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(this.user.email);
+  removePhoneNumber = (index: number) => {
+    this.phoneNumbers.removeAt(index);
+  };
+
+  addPhoneNumber = () => {
+    this.phoneNumbers.push(
+      this.formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(/^\d{10}$/),
+      ])
+    );
   };
 }
