@@ -1,9 +1,23 @@
 <section>
-  <h1>Task List</h1>
-
-  <app-task
-    *ngFor="let task of tasks"
-    [task]="task"
-    (taskDeleted)="deleteTask(task)"
-  />
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li>
+        <a routerLink="/notes">Notes</a>
+      </li>
+      <li>
+        <a [routerLink]="['/notes', '123']">Note 123</a>
+      </li>
+      <li>
+        <a [routerLink]="['/notes', '456']">Note 456</a>
+      </li>
+      <li>
+        <a [routerLink]="['/notes', '789']">Note 789</a>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+  <h2>Footer</h2>
 </section>
