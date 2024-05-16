@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AboutComponent } from './components/about/about.component';
+import { authGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -10,13 +13,15 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    path: 'dashboard',
+    title: 'Dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
   },
   {
-    path: 'analytics',
-    loadChildren: () =>
-      import('./analytics/analytics.module').then((m) => m.AnalyticsModule),
+    path: 'about',
+    title: 'About',
+    component: AboutComponent,
   },
   {
     path: '**',

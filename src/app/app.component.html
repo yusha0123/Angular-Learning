@@ -1,6 +1,12 @@
 <main>
-  <button type="button" routerLink="">Home</button>
-  <button type="button" routerLink="auth">Auth</button>
-  <button type="button" routerLink="analytics">Analytics</button>
+  <nav
+    class="fixed inset-x-0 bg-gray-400 p-4 flex items-center justify-between"
+  >
+    <div class="flex gap-x-4">
+      <button class="btn btn-active" routerLink="">Home</button>
+      <button class="btn btn-active" routerLink="dashboard">Dashboard</button>
+      <button class="btn btn-active" routerLink="about">About</button>
+    </div>
+  </nav>
   <router-outlet />
 </main>
