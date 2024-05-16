@@ -1,4 +1,4 @@
-<section>
+<main>
   <nav>
     <ul>
       <li>
@@ -17,7 +17,8 @@
         <a [routerLink]="['/notes', '789']">Note 789</a>
       </li>
     </ul>
+    <button type="button" (click)="navigateToNotes()">Go to notes</button>
+    <button type="button" (click)="navigateToNote(789)">Go to a note</button>
   </nav>
-  <router-outlet></router-outlet>
-  <h2>Footer</h2>
-</section>
+  <router-outlet />
+</main>
