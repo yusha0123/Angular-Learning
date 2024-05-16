@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotesComponent } from './components/notes/notes.component';
-import { NoteComponent } from './components/note/note.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AboutComponent } from './components/about/about.component';
-import { AboutProjectsComponent } from './components/about-projects/about-projects.component';
-import { AboutSponsorComponent } from './components/about-sponsor/about-sponsor.component';
 import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -15,30 +10,13 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    title: 'Notes Page',
-    path: 'notes',
-    component: NotesComponent,
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'notes/:id',
-    component: NoteComponent,
-  },
-  {
-    path: 'about',
-    title: 'About',
-    component: AboutComponent,
-    children: [
-      {
-        path: 'projects',
-        title: 'Projects',
-        component: AboutProjectsComponent,
-      },
-      {
-        path: 'sponsor',
-        title: 'Sponsor',
-        component: AboutSponsorComponent,
-      },
-    ],
+    path: 'analytics',
+    loadChildren: () =>
+      import('./analytics/analytics.module').then((m) => m.AnalyticsModule),
   },
   {
     path: '**',

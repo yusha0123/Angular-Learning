@@ -1,24 +1,6 @@
 <main>
-  <nav>
-    <ul>
-      <li>
-        <a routerLink="/">Home</a>
-      </li>
-      <li>
-        <a routerLink="/notes">Notes</a>
-      </li>
-      <li>
-        <a [routerLink]="['/notes', '123']">Note 123</a>
-      </li>
-      <li>
-        <a [routerLink]="['/notes', '456']">Note 456</a>
-      </li>
-      <li>
-        <a [routerLink]="['/notes', '789']">Note 789</a>
-      </li>
-    </ul>
-    <button type="button" (click)="navigateToNotes()">Go to notes</button>
-    <button type="button" (click)="navigateToNote(789)">Go to a note</button>
-  </nav>
+  <button type="button" routerLink="">Home</button>
+  <button type="button" routerLink="auth">Auth</button>
+  <button type="button" routerLink="analytics">Analytics</button>
   <router-outlet />
 </main>
